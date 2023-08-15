@@ -5,19 +5,19 @@ const spinner = document.querySelector('.spinner');
 
 
 generate.addEventListener("click", () => {
-    spinner.classList.remove('hidden');
-    fetch("https://randomuser.me/api")
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            return response.json();
-        })
+  spinner.classList.remove('hidden');
+  fetch("https://randomuser.me/api")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json();
+    })
 
 
-        .then((data) => {
-            const user = data.results[0];
-            userDataDiv.innerHTML = `
+    .then((data) => {
+      const user = data.results[0];
+      userDataDiv.innerHTML = `
             <div class="flex justify-between">
             <div class="flex">
               <img
@@ -46,30 +46,30 @@ generate.addEventListener("click", () => {
 
 
 
-            const user1 = data.results[0];
-            const gender = user1.gender;
-            const body = document.body;
+      const user1 = data.results[0];
+      const gender = user.gender;
+      const body = document.body;
 
-            // Define color values for different genders
-            const maleColor = "steelblue";
-            const femaleColor = "rebeccapurple";
-            const defaultColor = "white"; // You can set a default color here
+      // Define color values for different genders
+      const maleColor = "steelblue";
+      const femaleColor = "rebeccapurple";
+      const defaultColor = "white"; // You can set a default color here
 
-            // Apply background color based on gender
-            if (gender === "male") {
-                body.style.backgroundColor = maleColor;
-            } else if (gender === "female") {
-                body.style.backgroundColor = femaleColor;
-            } else {
-                body.style.backgroundColor = defaultColor; // Reset color if gender is not male or female
-            }
-
-
-            spinner.classList.add('hidden');
-        })
-        .catch((error) => {
-            console.error("Error fetching data:", error);
+      // Apply background color based on gender
+      if (gender === "male") {
+        body.style.backgroundColor = maleColor;
+      } else if (gender === "female") {
+        body.style.backgroundColor = femaleColor;
+      } else {
+        body.style.backgroundColor = defaultColor; // Reset color if gender is not male or female
+      }
 
 
-        });
+      spinner.classList.add('hidden');
+    })
+    .catch((error) => {
+      console.error("Error fetching data:", error);
+
+
+    });
 });
